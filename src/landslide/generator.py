@@ -112,6 +112,7 @@ class Generator(object):
             self.add_user_css(config.get('css', []))
             self.add_user_js(config.get('js', []))
             self.linenos = self.linenos_check(config.get('linenos'))
+            self.copy_theme = config.get('copy_theme', False)            
         else:
             self.source = source
 
@@ -422,6 +423,8 @@ class Generator(object):
             config['embed'] = raw_config.getboolean('landslide', 'embed')
         if raw_config.has_option('landslide', 'relative'):
             config['relative'] = raw_config.getboolean('landslide', 'relative')
+        if raw_config.has_option('landslide', 'copy_theme'):
+            config['copy_theme'] = raw_config.getboolean('landslide', 'copy_theme')
         if raw_config.has_option('landslide', 'css'):
             config['css'] = raw_config.get('landslide', 'css')\
                 .replace('\r', '').split('\n')
